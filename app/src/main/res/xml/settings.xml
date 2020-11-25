@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:title="Daily Notification"
+        android:defaultValue="false"
+        android:summary="Turn on to receive daily notifications"
+        android:key="notification_pref"/>
+
+    <ListPreference
+        android:title="Sort By"
+        android:key="sort_pref"
+android:entries="@array/sort_method"
+        android:entryValues="@array/sort_method_value"
+        android:defaultValue="id"/>
+
+    <ListPreference
+        android:title="Number of Options"
+        android:key="options_pref"
+        android:entries="@array/options"
+        android:entryValues="@array/options_value"
+        android:defaultValue="Four"/>
+</PreferenceScreen>
