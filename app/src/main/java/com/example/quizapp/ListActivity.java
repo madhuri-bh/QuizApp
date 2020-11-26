@@ -40,7 +40,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_list);
+        setContentView(R.layout.list_activity);
 
         final StateViewModel stateViewModel = new ViewModelProvider(this).get(StateViewModel.class);
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
@@ -64,13 +64,13 @@ public class ListActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddActivity.class);
                 startActivityForResult(intent, NEW_DATA_REQUEST_CODE);
             }
         });
 
         final ConstraintLayout constraintLayout = findViewById(R.id.constraint_layout);
-        final Snackbar snackbar = Snackbar.make(constraintLayout, "Sate Deleted", BaseTransientBottomBar.LENGTH_LONG)
+        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Deleted", BaseTransientBottomBar.LENGTH_LONG)
                 .setAction("UNDO", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

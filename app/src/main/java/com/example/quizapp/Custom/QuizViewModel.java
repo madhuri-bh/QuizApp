@@ -15,10 +15,8 @@ import java.util.List;
 public class QuizViewModel extends AndroidViewModel {
 
     public StatesRepository statesRepository;
+    public MutableLiveData<List<States>> quizData = new MutableLiveData<>();
 
-    public LiveData<List<States>> listLiveData;
-
-    public MutableLiveData<List<States>> quizData;
     public QuizViewModel(@NonNull Application application) {
         super(application);
         statesRepository = StatesRepository.getStatesRepository(application);
@@ -33,7 +31,9 @@ public class QuizViewModel extends AndroidViewModel {
         }
     }
 
-    private void refreshGame() {
+    public void refreshGame() {
         loadGame();
     }
+
+
 }

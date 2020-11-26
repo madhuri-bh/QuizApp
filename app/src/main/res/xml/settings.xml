@@ -13,10 +13,10 @@ android:entries="@array/sort_method"
         android:entryValues="@array/sort_method_value"
         android:defaultValue="id"/>
 
-    <ListPreference
+    <!--<ListPreference
         android:title="Number of Options"
         android:key="options_pref"
         android:entries="@array/options"
         android:entryValues="@array/options_value"
-        android:defaultValue="Four"/>
+        android:defaultValue="Four"/>-->
 </PreferenceScreen>
