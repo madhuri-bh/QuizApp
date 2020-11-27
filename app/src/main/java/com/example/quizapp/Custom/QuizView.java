@@ -1,6 +1,7 @@
 package com.example.quizapp.Custom;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -38,6 +39,14 @@ public class QuizView extends LinearLayout {
         optionsRadioGroup.setId(View.generateViewId());
     }
 
+    public interface OptionsClickListener {
+        void optionsClick(boolean result);
+    }
+
+    public void setOptionsClickListener(OptionsClickListener optionsClickListener) {
+        this.optionsClickListener = optionsClickListener;
+    }
+
     public void setData(List<States> states) {
         Random random = new Random(System.currentTimeMillis());
         int correctOption = random.nextInt(4);
@@ -58,7 +67,7 @@ public class QuizView extends LinearLayout {
         correctOptionId = radios[correctOption].getId();
 
         for (int i = 0, j = 0; i < 4 && j < 4; i++, j++) {
-            if (i == correctOptionId) {
+            if (i == correctOption) {
                 optionsRadioGroup.addView(radios[correctOption]);
                 continue;
             } else {
@@ -74,9 +83,9 @@ public class QuizView extends LinearLayout {
     private void initListeners() {
         optionsRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if (optionsClickListener != null) {
-                    if (i == correctOptionId) {
+                    if (checkedId == correctOptionId) {
                         optionsClickListener.optionsClick(true);
                     } else {
                         optionsClickListener.optionsClick(false);
@@ -84,14 +93,6 @@ public class QuizView extends LinearLayout {
                 }
             }
         });
-    }
-
-    public interface OptionsClickListener {
-        void optionsClick(boolean radio);
-    }
-
-    public void setOptionsClickListener(OptionsClickListener optionsClickListener) {
-        this.optionsClickListener = optionsClickListener;
     }
 
     public void resetGame() {
